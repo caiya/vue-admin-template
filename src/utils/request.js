@@ -17,9 +17,7 @@ service.interceptors.request.use(
 
     if (store.getters.token) {
       // let each request carry token
-      // ['X-Token'] is a custom headers key
-      // please modify it according to the actual situation
-      config.headers['X-Token'] = getToken()
+      config.headers['Authorization'] = getToken()
     }
     return config
   },
@@ -39,8 +37,6 @@ service.interceptors.response.use(
 
   /**
    * Determine the request status by custom code
-   * Here is just an example
-   * You can also judge the status by HTTP Status Code
    */
   response => {
     const res = response.data
